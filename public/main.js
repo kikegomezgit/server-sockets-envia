@@ -15,6 +15,7 @@ function createGuide() {
             dataType: 'text',
             beforeSend:function(){
                 response.innerHTML = `<p>Attempting to create guide...</p>`
+                btn.disabled = true;
             },
             success:function(data)
             {
@@ -25,8 +26,10 @@ function createGuide() {
                         message: 'new guide created',
                         counter
                     });
+                    btn.disabled = false;
                 }else{
                     response.innerHTML = `<p>Something went wrong creating the guide</p>`
+                    btn.disabled = false;
                 }
             }
             });
