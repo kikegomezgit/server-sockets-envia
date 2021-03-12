@@ -40,16 +40,18 @@ const server = app.listen(app.get('port'), () => {
 const socketIO = require('socket.io');
 const io = socketIO(server);
 
-
+var counter=0;
 //websockets
 io.on('connection', (socket) => {
     socket.on('create', function(room) {
         socket.join(room);
         console.log('joined room ' + socket.id)
+        io.emit('getActualCounter', counter);
       });
 
       socket.on('updateCounter', function(data) {
-        io.emit('updateCounter', data);
+        counter = counter+data.counter;  
+        io.emit('updateCounter', counter);
       });
 });
 

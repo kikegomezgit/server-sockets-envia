@@ -2,8 +2,6 @@ const socket = io()
 
 let btn = document.getElementById('send');
 let response = document.getElementById('response');
-let counter = 0;
-
 
 
 btn.addEventListener('click', function () {
@@ -22,7 +20,7 @@ function createGuide() {
             {
                 if(data === 'generate'){
                     response.innerHTML = `<p>Guide created succesfully</p>`
-                    counter = counter+1;
+                    counter = 1;
                     socket.emit('updateCounter', {
                         message: 'new guide created',
                         counter
